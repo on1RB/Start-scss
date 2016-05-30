@@ -8,10 +8,10 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          ''
+          'build/css/style.css': ['src/scss/style.scss']
         }
       }
-    }
+    },
 
     postcss: {
       options: {
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
     watch: {
       style: {
         files: ['src/scss/**/*.scss'],
-        tasks: ['style'],
+        tasks: ['sass', 'postcss'],
         options: {
           spawn: false,
           livereload: true
@@ -197,13 +197,13 @@ module.exports = function(grunt) {
           }
         }
       }
-    }
+    },
 
   });
 
 
   grunt.registerTask('default', [
-    'copy:css_add',           // копируем дополнительные CSS-файлы из src/scss/css/ в build/css/
+    // 'copy:css_add',           // копируем дополнительные CSS-файлы из src/scss/css/ в build/css/
     'sass',                   // компилируем стили в          build/css/style.css
     'postcss',                // обрабатываем автопрефиксером build/css/style.css
     'copy:css_min',           // создаем                      build/css/style.min.css
@@ -213,11 +213,11 @@ module.exports = function(grunt) {
     'uglify',                 // минифицируем                        build/js/script.min.js
     'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
     'copy:img',               // копируем всё из src/img/ в build/img/
-    'copy:fonts',             // копируем всё из src/font/ в build/font/
-    'imagemin',               // минифицируем картинки в build/img/
+    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
+    // 'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
     'browserSync',            // запускаем плюшки автообновления
-    'watch'                   // запускаем слежение за изменениями файлов
+    'watch',                   // запускаем слежение за изменениями файлов
   ]);
 
 
@@ -233,7 +233,7 @@ module.exports = function(grunt) {
     'uglify',                 // минифицируем                        build/js/script.min.js
     'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
     'copy:img',               // копируем всё из src/img/ в build/img/
-    'copy:fonts',             // копируем всё из src/font/ в build/font/
+    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
     'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
   ]);
